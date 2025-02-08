@@ -3,12 +3,14 @@ date = '{{ .Date }}'
 title = '{{ replace .File.ContentBaseName "-" " " | title }}'
 summary = "Post Summary"
 description = "Post Description"
-tags = ["database", "java"]
+featuredImage = "image.png"
+directLink = "https://example.com"
+tags = ["slides"]
 draft = true
 
 toc = false
 autonumber = false
-readTime = true
+readTime = false
 math = true
 showTags = true
 hideBackToTop = false

@@ -1,0 +1,26 @@
+<div class="post-line">
+
+    {{ $dateFormat := "2 Jan 2006"}}
+    {{ with .Site.Params.listDateFormat }}
+    {{ $dateFormat = .}}
+    {{ end }}
+
+  <div>
+    <p class="line-date">{{ .Date | time.Format $dateFormat }} </p>
+  </div>
+
+  {{ with .Resources.GetMatch .Params.featuredImage }}
+  <img class="thumbnail" class="slide-featured-image" src="{{ .RelPermalink }}">
+  {{ end }}
+  <a class="slide-decoration-wrapper" href="{{ .Params.directLink }}">
+  <div class="slide-decoration">
+    »
+  </div>
+  </a>
+  <a class="slide-description" href="{{ .RelPermalink }}">
+      <span class="line-title">{{ .Title }}</span>
+        {{ if .Site.Params.listSummaries }}
+        <p class="line-summary-slides"> {{ .Summary }} </p>
+        {{ end }}
+  </a>
+</div>
