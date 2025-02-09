@@ -41,6 +41,11 @@
 
   --header-top-gap: 3rem;
 
+  --ul-margin-top: 1.5rem;
+  --ul-margin-bottom: 1.5rem;
+  --li-margin-top: 0rem;
+  --li-margin-bottom: 0rem;
+
   --thumbnail-height: 96px;
   --thumbnail-width: 170px;
 }
@@ -216,4 +221,14 @@ a.footnote-ref {
 
 .slide-description {
   text-decoration: none;
+}
+
+li {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+li:not(li li) {
+  margin-top: var(--li-margin-top);
+  margin-bottom: var(--li-margin-bottom);
 }
