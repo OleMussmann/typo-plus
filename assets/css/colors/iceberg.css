@@ -12,4 +12,52 @@
     --background: #161821;
     --code-background: #242940;
     --code-border: #5b6389;
+
+}
+
+/* hugo-notice colors */
+/* Light theme */
+.notice {
+    --title-color: var(--background) !important;
+    --content-color: var(--content-primary) !important;
+    --title-background-color: #6573a1 !important;
+    --content-background-color: #d7d9e2 !important;
+}
+
+.notice.info {
+    --title-background-color: #c08569 !important;
+    --content-background-color: #eadcd7 !important;
+}
+
+.notice.tip {
+    --title-background-color: #7d976a !important;
+    --content-background-color: #dbe0d7 !important;
+}
+
+.notice.warning {
+    --title-background-color: #d36c86 !important;
+    --content-background-color: #f0d8dc !important;
+}
+
+/* Dark theme */
+body.dark .notice {
+    --title-color: var(--content-primary) !important;
+    --content-color: var(--content-primary) !important;
+    --title-background-color: #647a98 !important;
+    --content-background-color: #2e3949 !important;
+}
+
+body.dark .notice.info {
+    --title-background-color: #ae7d5b !important;
+    --content-background-color: #543b29 !important;
+}
+
+body.dark .notice.tip {
+    --title-background-color: #8a9263 !important;
+    --content-background-color: #41452d !important;
+}
+
+body.dark .notice.warning {
+    --title-background-color: #ae5b5b !important;
+    --content-background-color: #542929 !important;
 }
