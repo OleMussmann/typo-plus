@@ -41,10 +41,10 @@
 
   --header-top-gap: 3rem;
 
-  --ul-margin-top: 1.5rem;
-  --ul-margin-bottom: 1.5rem;
-  --li-margin-top: 0rem;
-  --li-margin-bottom: 0rem;
+  --ul-ol-margin-top: 1.5rem;
+  --ul-ol-margin-bottom: 1.5rem;
+  --li-margin-top: .5rem;
+  --li-margin-bottom: .5rem;
 
   --thumbnail-height: 96px;
   --thumbnail-width: 170px;
@@ -53,6 +53,7 @@
 body {
   font-size: var(--font-size);
   text-align: justify;
+  hyphens: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -224,11 +225,20 @@ a.footnote-ref {
 }
 
 li {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-li:not(li li) {
   margin-top: var(--li-margin-top);
   margin-bottom: var(--li-margin-bottom);
+}
+
+ul, ol {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+ul:not(li ul), ol:not(li ol) {
+  margin-top: var(--ul-ol-margin-top);
+  margin-bottom: var(--ul-ol-margin-bottom);
+}
+
+li:has(input) {
+  list-style-type: none; /* Remove bullets */
 }
