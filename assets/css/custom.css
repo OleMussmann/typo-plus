@@ -50,12 +50,15 @@
 
   --thumbnail-height: 96px;
   --thumbnail-width: 170px;
+
+  --main-width: 720px;
 }
 
 body {
   font-size: var(--font-size);
   text-align: justify;
   hyphens: auto;
+  max-width: calc(var(--main-width) + 2 * var(--main-padding));
 }
 
 h1, h2, h3, h4, h5, h6 {
