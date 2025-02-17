@@ -1,0 +1,11 @@
+{{/* Available manicule types: up down left right */}}
+{{- $maniculeType := .Get 0 | default "up" -}}
+
+{{/* Load the css if it's the first time */}}
+{{- if not ($.Page.Scratch.Get "manicule-style-loaded-flag") -}}
+<style type="text/css">
+</style>
+{{- $.Page.Scratch.Set "manicule-style-loaded-flag" true -}}
+{{- end -}}
+
+<span class="manicule {{ $maniculeType }}" {{ if len .Params | eq 2 }} id="{{ .Get 1 }}" {{ end }}>&nbsp;{{ printf "manicules/default.svg" | readFile | safeHTML }}&nbsp;</span>

@@ -247,3 +247,33 @@ ul:not(li ul), ol:not(li ol) {
 li:has(input) {
   list-style-type: none; /* Remove bullets */
 }
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+span.manicule {
+  display: inline-flex;
+}
+
+.manicule svg {
+  height: 1em;
+  width: .7em;
+  transform: translate(0, .1em) scale(1.15);
+  fill: var(--content-primary);
+}
+
+.down svg {
+  transform: translate(0, .2em) scale(1.15) rotate(180deg);
+}
+
+.right svg {
+  transform: translate(0, .2em) scale(1.15) rotate(90deg);
+  width: 1em;
+}
+
+.left svg {
+  transform: translate(0, .2em) scale(-1.15, 1.15) rotate(90deg);
+  width: 1em;
+}
