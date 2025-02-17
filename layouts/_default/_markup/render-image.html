@@ -1,0 +1,94 @@
+{{/*
+To get page resources and relative paths to work. Copied as is from default
+hook:
+https://github.com/gohugoio/hugo/blob/89bd02/tpl/tplimpl/embedded/templates/_default/_markup/render-image.html
+*/}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- $imgResource := .Page.Scratch.Get "typoNilVariable" -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- $imgResource = or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+  {{- with $imgResource -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery -}}
+      {{- $src = printf "%s?%s" $src . -}}
+    {{- end -}}
+    {{- with $u.Fragment -}}
+      {{- $src = printf "%s#%s" $src . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Split URL at # */}}
+{{ $url := $src | safeURL }}
+{{ $file_name_array := split $url "#" }}
+
+{{ $is_internal_resource := true }}
+{{if gt (len (findRE `^http.://` $url)) 0 }}
+  {{ $is_internal_resource = false }}
+{{end}}
+
+{{/*
+Iterate over all tags, which are in pos 1 to len array - 1,
+and build the img class string as "img-tag1 img-tag2 ..."
+*/}}
+
+{{ $classes := "" }}
+
+{{ range $idx := seq (sub (len $file_name_array) 1) }}
+{{ $tag := index $file_name_array $idx }}
+{{ $classes = printf "%s img-%s" $classes $tag}}
+{{ end }}
+
+
+{{ $dimensions := false }}
+{{- with $imgResource -}}
+  {{ if (ne $imgResource.MediaType.SubType "svg") }}
+    {{ $dimensions = true }}
+    {{ if and (not (strings.Contains $classes "img-noresize")) (strings.Contains $classes "img-nowebp") }}
+      {{ $imgResource = $imgResource.Resize "720x Lanczos" }}
+    {{ end }}
+    {{ if and (strings.Contains $classes "img-noresize") (not (strings.Contains $classes "img-nowebp")) }}
+      {{ $imgResource = $imgResource.Resize (printf "%dx%d webp q75 Lanczos" .Width .Height)  }}
+    {{ end }}
+    {{ if and (not (strings.Contains $classes "img-noresize")) (not (strings.Contains $classes "img-nowebp")) }}
+      {{ $imgResource = $imgResource.Resize "720x webp q75 Lanczos" }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{- $first_image := false -}}
+{{- if not ($.Page.Scratch.Get "not-first-image-flag") -}}
+  {{- $first_image = true -}}
+  {{- $.Page.Scratch.Set "not-first-image-flag" true -}}
+{{- end -}}
+
+{{ $loading := "lazy" }}
+{{ if or (strings.Contains $classes "img-eager") (and $first_image (not (strings.Contains $classes "img-lazy"))) }}
+  {{ $loading = "eager" }}
+{{ end }}
+
+{{ $source := $url }}
+{{ if $is_internal_resource }}
+  {{ $source = $imgResource.RelPermalink }}
+{{ end }}
+
+{{/* Use the computed classes on the rendered figure */}}
+<figure class="{{ $classes }}">
+
+    <div>
+      {{ if $dimensions }}
+    <img loading={{ $loading }} alt="{{ .Text }}" src="{{ $source }}" width={{ $imgResource.Width }} height={{ $imgResource.Height }} style="width: {{ $imgResource.Width }}px; height: auto;">
+      {{ else }}
+      <img loading={{ $loading }} alt="{{ .Text }}" src="{{ $source }}">
+      {{ end }}
+    </div>
+
+    {{ with .Title }}
+    <div class="caption-container">
+        <figcaption> {{ . | markdownify}} </figcaption>
+    </div>
+    {{ end }}
+</figure>
+
