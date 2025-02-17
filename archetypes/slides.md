@@ -1,19 +1,21 @@
 +++
 date = '{{ .Date }}'
 title = '{{ replace .File.ContentBaseName "-" " " | title }}'
-summary = "Post Summary"
-description = "Post Description"
-featuredImage = "image.png"
-directLink = "https://example.com"
-tags = ["slides"]
-draft = true
+summary = "FIXME_Post_Summary"
+description = "FIXME_Post_Description"
+featuredImage = "FIXME_image.png"
+directLink = "https://FIXME.example.com"
+tags = ["presentations", "FIXME"]
+draft = false
 
 toc = false
 autonumber = false
 readTime = false
-math = true
+math = false
 showTags = true
 hideBackToTop = false
 hidePagination = true
 fediverse = "@ole@fosstodon.org"
 +++
+
+[![Screenshot of a presentation: Title "FIXME_TITLE"](mopo_title_slide.png#small "Slides")](FIXME_SLIDE_LINK)
