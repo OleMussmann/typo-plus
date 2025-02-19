@@ -14,4 +14,7 @@ showTags = true
 hideBackToTop = false
 hidePagination = true
 fediverse = "@ole@fosstodon.org"
+
+[sitemap]
+disable = false
 +++

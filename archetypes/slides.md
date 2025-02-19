@@ -16,6 +16,9 @@ showTags = true
 hideBackToTop = false
 hidePagination = true
 fediverse = "@ole@fosstodon.org"
+
+[sitemap]
+disable = false
 +++
 
 [![Screenshot of a presentation: Title "FIXME_TITLE"](mopo_title_slide.png#small "Slides")](FIXME_SLIDE_LINK)
