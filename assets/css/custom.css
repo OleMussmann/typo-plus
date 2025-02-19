@@ -61,6 +61,12 @@ body {
   max-width: calc(var(--main-width) + 2 * var(--main-padding));
 }
 
+.header-title {
+  font-family: var(--font-heading);
+  margin-top: var(--h1-margin-top) !important;
+  margin-bottom: var(--h1-margin-bottom) !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   text-align: left;
