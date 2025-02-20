@@ -30,6 +30,11 @@
       &nbsp; · &nbsp;
       {{ .ReadingTime }} min read
       {{end }}
+
+      {{ if .Param "author" }}
+      &nbsp; · &nbsp;
+      by <a href={{ index .Params.author 1 }}>{{ index .Params.author 0 }}</a>
+      {{end }}
     </p>
 
   </div>

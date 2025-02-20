@@ -4,6 +4,7 @@ title = '{{ replace .File.ContentBaseName "-" " " | title }}'
 summary = "Post Summary"
 description = "Post Description"
 tags = ["database", "java"]
+author = ["Ole", "https://github.com/OleMussmann"]
 draft = true
 
 toc = false
