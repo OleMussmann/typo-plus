@@ -5,6 +5,7 @@ summary = "Post Summary"
 description = "Post Description"
 tags = ["database", "java"]
 author = ["Ole", "https://github.com/OleMussmann"]
+issueLink = "https://github.com/OleMussmann/ole.mn/issues"
 draft = true
 
 toc = false
