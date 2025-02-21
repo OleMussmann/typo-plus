@@ -284,3 +284,10 @@ span.manicule {
   transform: translate(0, .2em) scale(-1.15, 1.15) rotate(90deg);
   width: 1em;
 }
+
+span.flourish svg {
+  display: block;
+  margin: 2em auto;
+  zoom: 1.2;
+  fill: var(--content-primary);
+}

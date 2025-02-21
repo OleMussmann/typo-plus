@@ -1,0 +1,4 @@
+{{/* Available flourish types: 1-10 */}}
+{{- $flourishType := .Get 0 | default "1" -}}
+
+<span class="flourish {{ $flourishType }}" {{ if len .Params | eq 2 }} id="{{ .Get 1 }}" {{ end }}>{{ (printf "assets/flourishes/flourish_%s.svg" (string (int $flourishType)) ) | readFile | safeHTML }}</span>
