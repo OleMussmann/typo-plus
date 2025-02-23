@@ -58,4 +58,25 @@
     {{ end }}
 </div>
 
+{{ if .Site.Params.honeypot }}
+<a class="root_login" href="/root-login-admin-panel">Admin Panel</a>
+{{ (resources.Get "honeypot/index.html" | resources.Copy "/root-login-admin-panel/index.html").Publish }}
+{{ end }}
+
+{{ $string := `
+{{ if .Site.Params.honeypot }}
+User-agent: *
+Disallow: /root-login-admin-panel/
+{{ end }}
+{{ if fileExists "static/robots.txt" }}
+{{/* use supplied robots.txt */}}
+{{ printf "static/robots.txt" | readFile | safeHTML }}
+{{ else }}
+{{/* allow all */}}
+User-agent: *
+{{ end }}
+`}}
+{{ $r := resources.FromString "" $string }}
+{{ $r = $r | resources.ExecuteAsTemplate "robots.txt" . }}
+{{ $r.Publish }}
 {{ end }}

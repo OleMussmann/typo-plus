@@ -291,3 +291,9 @@ span.flourish svg {
   zoom: 1.2;
   fill: var(--content-primary);
 }
+
+/* honeypot */
+.root_login {
+  display: block;
+  transform: scale(0);
+}
