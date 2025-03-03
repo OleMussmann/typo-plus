@@ -297,3 +297,49 @@ span.flourish svg {
   display: block;
   transform: scale(0);
 }
+
+summary {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: -1.5ex;
+  list-style-type: none;
+  animation: none !important;
+}
+
+summary:hover {
+  color: var(--content-secondary);
+}
+
+summary::before {
+  display: inline-block;
+  content: "»";
+  color: var(--content-secondary);
+  font-size: larger;
+  font-weight: bold;
+  opacity: .7;
+  transition: all .2s;
+  margin-right: .5ex;
+}
+
+summary:hover::before {
+  transform: translate(.3ex);
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg) translate(.3ex, -.2ex);
+}
+
+details[open] .summary-inner {
+  animation: fadeIn .2s linear forwards;
+  transform-origin: 0% 0%;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
