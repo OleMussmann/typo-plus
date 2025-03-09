@@ -241,20 +241,6 @@ li {
   margin-bottom: var(--li-margin-bottom);
 }
 
-ul, ol {
-  margin: 0;
-  padding-left: 1rem;
-}
-
-ul:not(li ul), ol:not(li ol) {
-  margin-top: var(--ul-ol-margin-top);
-  margin-bottom: var(--ul-ol-margin-bottom);
-}
-
-li:has(input) {
-  list-style-type: none; /* Remove bullets */
-}
-
 .flex {
   display: flex;
   flex-wrap: wrap;
