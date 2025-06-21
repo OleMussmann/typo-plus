@@ -1,0 +1,12 @@
+<!-- https://wellshapedwords.com/posts/hugo-manage-terminologies/ -->
+{{- $arg := (.Get 0) -}}
+{{- range sort .Site.Data.termbase "term" -}}
+    <dl>
+    <dt>{{- .term }}{{ with .alias }} ({{ . -}}){{ end -}}
+    </dt>
+    <dd>{{- .definition -}}</dd>
+    {{- with .readmore -}}
+    <dd>Read more:<br><a href="{{ . }}">{{ . }}</a></dd>
+    {{- end -}}
+    </dl>
+{{- end -}}
