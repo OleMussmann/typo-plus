@@ -1,12 +1,18 @@
 <!-- https://wellshapedwords.com/posts/hugo-manage-terminologies/ -->
 {{- $arg := (.Get 0) -}}
 {{- range sort .Site.Data.termbase "term" -}}
+  {{- if (eq .category $arg) -}}
     <dl>
-    <dt>{{- .term }}{{ with .alias }} ({{ . -}}){{ end -}}
-    </dt>
-    <dd>{{- .definition -}}</dd>
-    {{- with .readmore -}}
-    <dd>Read more:<br><a href="{{ . }}">{{ . }}</a></dd>
-    {{- end -}}
+      <dt id="glossary-{{- .term}}">{{- .term }}{{ with .alias }} ({{ . -}}){{ end -}}</dt>
+      {{- with .see -}}
+      <dd>See: <a href="#glossary-{{- . -}}">{{- . -}}</a></dd>
+      {{- end -}}
+      {{- with .definition -}}
+      <dd>{{- . -}}</dd>
+      {{- end -}}
+      {{- with .readmore -}}
+      <dd>Read more:<br>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ . }}">{{ . }}</a></dd>
+      {{- end -}}
     </dl>
+  {{- end -}}
 {{- end -}}
