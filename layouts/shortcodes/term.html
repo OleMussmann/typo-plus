@@ -1,5 +1,5 @@
-<!-- https://wellshapedwords.com/posts/hugo-manage-terminologies/ -->
-<!-- variables based on shortcode argument -->
+<!-- https://wellshapedwords.com/posts/hugo-manage-terminologies/
+variables based on shortcode argument -->
 {{- $entry := (.Get 0) -}}
 
 <!-- range over data file -->
@@ -7,8 +7,12 @@
 
 <!-- Find matches -->
     {{- if eq ( .alias | lower) ( $entry | lower ) -}}
-        <abbr title="{{ .definition | plainify -}}"> {{- .alias -}}</abbr>
+        <abbr title="({{ .term | plainify -}}) {{ .definition | plainify -}}"> {{- .alias -}}</abbr>
     {{- else if eq ( .term | lower) ( $entry | lower ) -}}
-        <abbr title="{{ .definition | plainify -}}"> {{- $entry -}}</abbr>
+        {{- if .alias -}}
+            <abbr title="({{ .alias | plainify -}}) {{ .definition | plainify -}}"> {{- $entry -}}</abbr>
+        {{- else -}}
+            <abbr title="{{ .definition | plainify -}}"> {{- $entry -}}</abbr>
+        {{- end -}}
     {{- end -}}
 {{- end -}}
