@@ -329,3 +329,17 @@ details[open] .summary-inner {
     transform: scaleY(1);
   }
 }
+
+/* keep sub- and superscript elements from increasing line-height */
+sub {
+  font-size: 0.675em;
+  line-height: 1.2;
+  vertical-align: sub;
+  vertical-align: -20%;
+}
+sup {
+  font-size: 0.675em;
+  line-height: 1.2;
+  vertical-align: super;
+  vertical-align: 35%;
+}
